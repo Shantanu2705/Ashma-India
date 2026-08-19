@@ -116,11 +116,11 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Custom Colors for Ashma */
-  --color-ashma-blue: #1698E8;
-  --color-ashma-dark: #0A6DB2;
-  --color-ashma-light: #DDF4FF;
-  --color-ashma-grey: #F5F7FA;
-  --color-ashma-text: #0F172A;
+  --color-ashma-blue: #0E8BE1;
+  --color-ashma-dark: #075A96;
+  --color-ashma-light: #BBE1FF;
+  --color-ashma-grey: #E5F3FF;
+  --color-ashma-text: #0B1B36;
 
   /* Fonts */
   --font-sans: var(--font-geist-sans);
@@ -132,7 +132,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-ashma-light/40 via-white to-white min-h-screen;
   }
 }
 
