@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Environment, OrbitControls, PresentationControls, MeshTransmissionMaterial, RoundedBox, Cylinder, Sphere } from "@react-three/drei";
 import * as THREE from "three";
@@ -105,6 +105,12 @@ export function RealisticROPurifier() {
 }
 
 export default function Service3DModel() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="relative w-full py-24 bg-[#050505] overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-ashma-blue/10 via-transparent to-transparent opacity-50" />
@@ -144,19 +150,21 @@ export default function Service3DModel() {
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               Drag to Rotate
             </div>
-            <Canvas camera={{ position: [0, 0, 10], fov: 40 }}>
-              <ambientLight intensity={0.5} />
-              <spotLight position={[10, 10, 10]} angle={0.2} penumbra={1} intensity={2} castShadow />
-              <directionalLight position={[-5, 5, 5]} intensity={1} />
-              <OrbitControls 
-                enableZoom={false} 
-                enablePan={false} 
-                minPolarAngle={Math.PI / 3} 
-                maxPolarAngle={Math.PI / 1.5} 
-              />
-              <RealisticROPurifier />
-              <Environment preset="studio" />
-            </Canvas>
+            {mounted && (
+              <Canvas camera={{ position: [0, 0, 10], fov: 40 }}>
+                <ambientLight intensity={0.5} />
+                <spotLight position={[10, 10, 10]} angle={0.2} penumbra={1} intensity={2} castShadow />
+                <directionalLight position={[-5, 5, 5]} intensity={1} />
+                <OrbitControls 
+                  enableZoom={false} 
+                  enablePan={false} 
+                  minPolarAngle={Math.PI / 3} 
+                  maxPolarAngle={Math.PI / 1.5} 
+                />
+                <RealisticROPurifier />
+                <Environment preset="studio" />
+              </Canvas>
+            )}
           </div>
 
         </div>

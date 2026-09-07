@@ -4,10 +4,8 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ProductEcosystem from "@/components/home/ProductEcosystem";
 import BrandsMarquee from "@/components/home/BrandsMarquee";
 import ContactSnippet from "@/components/home/ContactSnippet";
-import dynamic from "next/dynamic";
-
-const Service3DModel = dynamic(() => import("@/components/home/Service3DModel"), { ssr: false });
-const ServicesSection = dynamic(() => import("@/components/home/ServicesSection"), { ssr: true });
+import Service3DModel from "@/components/home/Service3DModel";
+import ServicesSection from "@/components/home/ServicesSection";
 
 export default function Home() {
   return (
