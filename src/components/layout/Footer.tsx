@@ -66,15 +66,20 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 text-sm">
                 <MapPin className="w-5 h-5 text-ashma-blue shrink-0" />
-                <span>123 Industrial Area, Phase 1, New Delhi, India 110020</span>
+                <span>Sweet Home Building, 26, Bankim Chandra Road,<br />Hakimpara, Siliguri-734001</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400 text-sm">
-                <Phone className="w-5 h-5 text-ashma-blue shrink-0" />
-                <span>+91 98765 43210</span>
+              <li className="flex flex-col gap-2 text-gray-400 text-sm mt-2">
+                <div className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-ashma-blue shrink-0" />
+                  <span>1800 120 2133 (Toll Free)</span>
+                </div>
+                <div className="flex items-center gap-3 pl-8">
+                  <span>+91 8101663132</span>
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-gray-400 text-sm">
+              <li className="flex items-center gap-3 text-gray-400 text-sm mt-2">
                 <Mail className="w-5 h-5 text-ashma-blue shrink-0" />
-                <span>info@ashmaindia.com</span>
+                <span>swagataenterprise08@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -82,7 +87,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} AshmaIndia. All rights reserved.
+            © {new Date().getFullYear()} Swagata Enterprise (Ashma India). All rights reserved.
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">Privacy Policy</Link>

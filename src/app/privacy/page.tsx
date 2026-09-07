@@ -49,8 +49,8 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-2xl font-bold text-ashma-text dark:text-white mb-4">5. Contact Us</h2>
             <p className="mb-6">
               If you have any questions about this privacy policy or our privacy practices, please contact us at: <br />
-              Email: info@ashmaindia.com <br />
-              Phone: +91 98765 43210
+              Email: swagataenterprise08@gmail.com <br />
+              Phone: 1800 120 2133 / 8101663132
             </p>
           </div>
         </div>

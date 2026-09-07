@@ -27,8 +27,8 @@ export default function ContactPage() {
                 </div>
                 <h4 className="text-xl font-heading font-bold mb-2">Our Office</h4>
                 <p className="text-gray-600 dark:text-gray-400">
-                  123 Industrial Area, Phase 1,<br />
-                  New Delhi, India 110020
+                  Sweet Home Building, 26, Bankim Chandra Road,<br />
+                  Near shani Mandir, Hakimpara, Siliguri-734001
                 </p>
               </div>
               
@@ -37,8 +37,9 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6 text-ashma-blue" />
                 </div>
                 <h4 className="text-xl font-heading font-bold mb-2">Call Us</h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-1">Sales: +91 98765 43210</p>
-                <p className="text-gray-600 dark:text-gray-400">Support: +91 98765 43211</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">Toll Free: 1800 120 2133</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">Mobile: +91 8101663132</p>
+                <p className="text-gray-600 dark:text-gray-400">WhatsApp: +91 7001934185</p>
               </div>
 
               <div className="glass-card p-8 rounded-3xl">
@@ -46,8 +47,7 @@ export default function ContactPage() {
                   <Mail className="w-6 h-6 text-ashma-blue" />
                 </div>
                 <h4 className="text-xl font-heading font-bold mb-2">Email Us</h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-1">info@ashmaindia.com</p>
-                <p className="text-gray-600 dark:text-gray-400">support@ashmaindia.com</p>
+                <p className="text-gray-600 dark:text-gray-400 mb-1">swagataenterprise08@gmail.com</p>
               </div>
             </div>
 
