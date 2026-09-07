@@ -71,9 +71,6 @@ export default function Footer() {
               <li className="flex flex-col gap-2 text-gray-400 text-sm mt-2">
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-ashma-blue shrink-0" />
-                  <span>1800 120 2133 (Toll Free)</span>
-                </div>
-                <div className="flex items-center gap-3 pl-8">
                   <span>+91 8101663132</span>
                 </div>
               </li>

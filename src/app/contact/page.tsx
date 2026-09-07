@@ -37,7 +37,6 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6 text-ashma-blue" />
                 </div>
                 <h4 className="text-xl font-heading font-bold mb-2">Call Us</h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-1">Toll Free: 1800 120 2133</p>
                 <p className="text-gray-600 dark:text-gray-400 mb-1">Mobile: +91 8101663132</p>
                 <p className="text-gray-600 dark:text-gray-400">WhatsApp: +91 7001934185</p>
               </div>
@@ -51,14 +50,18 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="lg:col-span-2 glass-card rounded-3xl overflow-hidden min-h-[400px] relative group">
-              <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-ashma-blue mx-auto mb-4" />
-                  <p className="text-gray-500 font-medium">Interactive Google Map Integration</p>
-                </div>
-              </div>
+            {/* Map */}
+            <div className="lg:col-span-2 glass-card rounded-3xl overflow-hidden min-h-[400px] relative group border border-gray-100 dark:border-white/10 shadow-lg">
+              <iframe 
+                src="https://maps.google.com/maps?q=Sweet+Home+Building,+26,+Bankim+Chandra+Road,+Hakimpara,+Siliguri-734001&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: '400px' }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
+              />
             </div>
           </div>
         </div>

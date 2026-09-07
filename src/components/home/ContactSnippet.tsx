@@ -31,10 +31,10 @@ export default function ContactSnippet() {
                 Book a Service <ArrowRight className="w-5 h-5" />
               </Link>
               <a 
-                href="tel:18001202133" 
+                href="tel:+918101663132" 
                 className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-colors"
               >
-                <PhoneCall className="w-5 h-5" /> Call 1800 120 2133
+                <PhoneCall className="w-5 h-5" /> Call +91 8101663132
               </a>
             </div>
           </div>

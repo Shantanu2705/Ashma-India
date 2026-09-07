@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
             <p className="mb-6">
               If you have any questions about this privacy policy or our privacy practices, please contact us at: <br />
               Email: swagataenterprise08@gmail.com <br />
-              Phone: 1800 120 2133 / 8101663132
+              Phone: +91 8101663132 / 7001934185
             </p>
           </div>
         </div>
