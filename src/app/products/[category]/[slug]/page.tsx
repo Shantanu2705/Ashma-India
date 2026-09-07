@@ -78,6 +78,14 @@ export default async function ProductDetailPage({
               {product.description}
             </p>
 
+            {/* MRP */}
+            {product.mrp && (
+              <div className="mb-8 p-4 bg-ashma-blue/10 dark:bg-ashma-blue/20 rounded-xl inline-block border border-ashma-blue/20">
+                <span className="text-gray-600 dark:text-gray-400 text-sm font-medium uppercase tracking-wider block mb-1">Maximum Retail Price</span>
+                <span className="text-3xl font-bold text-ashma-blue">{product.mrp}</span>
+              </div>
+            )}
+
             {/* Features */}
             <div className="mb-12">
               <h3 className="text-lg font-bold mb-6 text-ashma-text dark:text-white uppercase tracking-wider">
@@ -92,6 +100,27 @@ export default async function ProductDetailPage({
                 ))}
               </ul>
             </div>
+
+            {/* Technical Specifications */}
+            {product.specs && Object.keys(product.specs).length > 0 && (
+              <div className="mb-12">
+                <h3 className="text-lg font-bold mb-6 text-ashma-text dark:text-white uppercase tracking-wider flex items-center gap-2">
+                  Technical Specifications
+                </h3>
+                <div className="bg-gray-50 dark:bg-white/5 rounded-2xl overflow-hidden border border-gray-100 dark:border-white/10">
+                  <table className="w-full text-left border-collapse">
+                    <tbody>
+                      {Object.entries(product.specs).map(([key, value], idx) => (
+                        <tr key={key} className={idx % 2 === 0 ? 'bg-white dark:bg-black/20' : 'bg-transparent'}>
+                          <th className="py-4 px-6 font-semibold text-gray-700 dark:text-gray-300 w-1/3 border-b border-gray-100 dark:border-white/5">{key}</th>
+                          <td className="py-4 px-6 text-gray-600 dark:text-gray-400 border-b border-gray-100 dark:border-white/5">{value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
 
             {/* CTA */}
             <div className="mt-auto pt-8 border-t border-gray-200 dark:border-white/10">
