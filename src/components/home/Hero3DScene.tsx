@@ -7,9 +7,9 @@ import { RealisticROPurifier } from "./Service3DModel";
 
 export function ParticleField() {
   const ref = useRef<any>(null);
-  const sphere = new Float32Array(5000 * 3);
+  const sphere = new Float32Array(1000 * 3);
   
-  for (let i = 0; i < 5000; i++) {
+  for (let i = 0; i < 1000; i++) {
     const radius = 1.5;
     const u = Math.random();
     const v = Math.random();
@@ -27,8 +27,8 @@ export function ParticleField() {
 
   useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 10;
-      ref.current.rotation.y -= delta / 15;
+      ref.current.rotation.x -= delta / 20;
+      ref.current.rotation.y -= delta / 30;
     }
   });
 

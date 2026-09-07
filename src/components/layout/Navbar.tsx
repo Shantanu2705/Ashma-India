@@ -13,7 +13,6 @@ const NAV_LINKS = [
   { name: "Products", href: "/products", hasMegaMenu: true },
   { name: "Gallery", href: "/gallery" },
   { name: "Services", href: "/services" },
-  { name: "Brands", href: "/brands" },
   { name: "Contact", href: "/contact" },
 ];
 

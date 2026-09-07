@@ -26,17 +26,17 @@ export function RealisticROPurifier() {
       <group ref={groupRef} scale={1.1} position={[0, -1.3, 0]}>
         
         {/* Main Body - Glossy White Plastic */}
-        <RoundedBox args={[2.2, 3, 1.5]} radius={0.1} smoothness={4} position={[0, 1.5, 0]} castShadow receiveShadow>
-          <meshStandardMaterial color="#ffffff" roughness={0.1} metalness={0.1} envMapIntensity={1} />
+        <RoundedBox args={[2.2, 3, 1.5]} radius={0.1} smoothness={2} position={[0, 1.5, 0]}>
+          <meshStandardMaterial color="#ffffff" roughness={0.2} metalness={0.1} />
         </RoundedBox>
 
         {/* Front Glass Panel - Black Acrylic */}
-        <RoundedBox args={[2, 2.8, 0.1]} radius={0.05} smoothness={4} position={[0, 1.5, 0.76]}>
-          <meshStandardMaterial color="#050505" roughness={0.05} metalness={0.8} envMapIntensity={2} />
+        <RoundedBox args={[2, 2.8, 0.1]} radius={0.05} smoothness={2} position={[0, 1.5, 0.76]}>
+          <meshStandardMaterial color="#050505" roughness={0.1} metalness={0.6} />
         </RoundedBox>
 
         {/* LED Screen Area */}
-        <RoundedBox args={[1.2, 0.6, 0.05]} radius={0.05} smoothness={4} position={[0, 2.2, 0.8]}>
+        <RoundedBox args={[1.2, 0.6, 0.05]} radius={0.05} smoothness={2} position={[0, 2.2, 0.8]}>
           <meshStandardMaterial color="#000000" roughness={0.2} />
         </RoundedBox>
 
@@ -49,18 +49,8 @@ export function RealisticROPurifier() {
         </Sphere>
 
         {/* Transparent Water Storage Tank (Bottom Half) */}
-        <RoundedBox args={[2.0, 1.2, 1.2]} radius={0.1} smoothness={4} position={[0, 0.6, 0.1]}>
-          <MeshTransmissionMaterial 
-            backside 
-            backsideThickness={1} 
-            thickness={2} 
-            roughness={0} 
-            transmission={1} 
-            ior={1.33} 
-            chromaticAberration={0.05} 
-            anisotropy={0.1} 
-            color="#dcf0ff" 
-          />
+        <RoundedBox args={[2.0, 1.2, 1.2]} radius={0.1} smoothness={2} position={[0, 0.6, 0.1]}>
+          <meshStandardMaterial color="#dcf0ff" transparent opacity={0.3} roughness={0.1} metalness={0.1} />
         </RoundedBox>
 
         {/* Internal Filters (Visible through glass) */}
@@ -73,13 +63,13 @@ export function RealisticROPurifier() {
 
         {/* Animated Water Bubbles inside the tank */}
         <group ref={bubblesRef} position={[0, 0.6, 0.1]}>
-          {Array.from({ length: 15 }).map((_, i) => (
+          {Array.from({ length: 5 }).map((_, i) => (
             <Sphere 
               key={i} 
               args={[Math.random() * 0.03 + 0.01, 8, 8]} 
               position={[(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8]}
             >
-              <meshPhysicalMaterial color="#ffffff" roughness={0} transmission={1} ior={1.1} />
+              <meshStandardMaterial color="#ffffff" transparent opacity={0.5} roughness={0.2} />
             </Sphere>
           ))}
         </group>
