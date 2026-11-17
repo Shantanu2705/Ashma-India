@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70" fill="none">
+  <!-- Crest/Star -->
+  <polygon points="26,16 30,28 42,28 32,36 36,48 26,40 16,48 20,36 10,28 22,28" fill="#E31E24"/>
+  <!-- Eureka Forbes text -->
+  <text x="50" y="36" font-family="'Franklin Gothic Medium', Arial, sans-serif" font-weight="900" font-size="20" fill="#003366" letter-spacing="1">EUREKA FORBES</text>
+  <text x="50" y="52" font-family="'Georgia', serif" font-style="italic" font-size="12" fill="#E31E24">Your friend for life</text>
+</svg>
+

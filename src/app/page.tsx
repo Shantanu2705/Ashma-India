@@ -1,20 +1,24 @@
 import Hero from "@/components/home/Hero";
+import BrandsMarquee from "@/components/home/BrandsMarquee";
 import AboutSnippet from "@/components/home/AboutSnippet";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import ProductEcosystem from "@/components/home/ProductEcosystem";
-import ContactSnippet from "@/components/home/ContactSnippet";
-import Service3DModel from "@/components/home/Service3DModel";
 import ServicesSection from "@/components/home/ServicesSection";
+import Service3DModel from "@/components/home/Service3DModel";
+import HomeGallerySnippet from "@/components/home/HomeGallerySnippet";
+import ContactSnippet from "@/components/home/ContactSnippet";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <BrandsMarquee />
       <AboutSnippet />
       <WhyChooseUs />
       <ProductEcosystem />
       <ServicesSection />
       <Service3DModel />
+      <HomeGallerySnippet />
       <ContactSnippet />
     </>
   );

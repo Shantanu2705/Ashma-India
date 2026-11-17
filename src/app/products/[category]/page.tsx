@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getCategoryBySlug, CATEGORIES } from "@/lib/data";
 import PageHeader from "@/components/layout/PageHeader";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
 export async function generateStaticParams() {
@@ -26,41 +26,86 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         description={category.description}
       />
       
-      <section className="py-24 bg-white dark:bg-[#050505]">
+      <section className="py-24 lg:py-32 bg-[#FFFAF7] text-[#1D1510] min-h-screen border-b border-[#DBD7D4]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Back Navigation */}
+          <div className="mb-12">
+            <Link 
+              href="/products"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.15em] font-bold text-[#716B67] hover:text-[#FF6300] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to All Categories</span>
+            </Link>
+          </div>
+
+          {/* Products Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {category.products.map((product) => (
               <div 
                 key={product.id} 
-                className="group flex flex-col bg-gray-50 dark:bg-white/5 rounded-3xl overflow-hidden border border-gray-100 dark:border-white/10 hover:shadow-2xl transition-all duration-300"
+                className="group flex flex-col bg-[#FFFFFF] rounded-2xl overflow-hidden border border-[#DBD7D4] hover:border-[#FF6300] transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <div className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-black/50">
+                {/* Product Image Frame (Clean, High Brightness, Sharp) */}
+                <div className="relative aspect-square overflow-hidden bg-[#F5F0ED] border-b border-[#DBD7D4]">
                   <Image 
                     src={product.image} 
                     alt={product.name}
                     fill
-                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain p-6 group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 400px"
                   />
+                  {product.mrp && (
+                    <div className="absolute top-4 right-4 bg-[#FFFFFF] border border-[#FF6300]/40 text-[#FF6300] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                      MRP {product.mrp}
+                    </div>
+                  )}
                 </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-heading font-bold text-ashma-text dark:text-white mb-3">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 flex-grow">
-                    {product.description}
-                  </p>
+
+                {/* Details */}
+                <div className="p-8 flex flex-col flex-grow justify-between">
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[#FF6300] block mb-2">
+                      {category.name}
+                    </span>
+                    <h3 className="text-2xl font-black uppercase tracking-tight text-[#1D1510] mb-3 group-hover:text-[#FF6300] transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-[#716B67] text-sm leading-relaxed mb-6">
+                      {product.description}
+                    </p>
+
+                    {/* Features Badges */}
+                    {product.features && product.features.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-8">
+                        {product.features.map((feat, i) => (
+                          <span 
+                            key={i} 
+                            className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-[#F5F0ED] text-[#1D1510] border border-[#DBD7D4]"
+                          >
+                            {feat}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                   
-                  <Link 
-                    href={`/products/${category.slug}/${product.slug}`}
-                    className="inline-flex items-center gap-2 text-ashma-blue font-semibold hover:text-ashma-dark transition-colors"
-                  >
-                    View Details
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <div className="pt-6 border-t border-[#F5F0ED] flex items-center justify-between">
+                    <Link 
+                      href={`/products/${category.slug}/${product.slug}`}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#FF6300] hover:bg-[#E05500] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors shadow-sm"
+                    >
+                      <span>View Specs</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <span className="text-xs text-[#716B67] font-bold uppercase tracking-wider">Ashma Certified</span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
     </>

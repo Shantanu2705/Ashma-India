@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -9,58 +10,64 @@ const PRODUCTS = [
   {
     title: "RO Water Purifiers",
     category: "Residential",
-    description: "Advanced multi-stage purification for your home.",
+    description: "Advanced multi-stage purification for your home with alkaline and copper infusion.",
     image: "/images/products/ro-purifiers/ashma-ream-salto-alcea-lineup.jpg",
     href: "/products/ro-purifiers",
-    className: "col-span-1 md:col-span-2 row-span-2",
+    className: "col-span-1 md:col-span-2 md:row-span-2",
+    featured: true,
   },
   {
     title: "Industrial RO Plants",
     category: "Commercial",
-    description: "High-capacity purification for industries.",
+    description: "High-capacity purification for factories, hotels, and hospitals.",
     image: "/images/products/commercial-ro/industrial-ro-plant-tanks.jpg",
     href: "/products/commercial-ro",
-    className: "col-span-1 row-span-1",
+    className: "col-span-1 md:col-span-1 md:row-span-1",
   },
   {
     title: "Kitchen Chimneys",
     category: "Home Appliances",
-    description: "Smoke-free cooking with powerful suction.",
+    description: "Smoke-free cooking with powerful suction and auto-clean sensors.",
     image: "/images/products/chimneys/ashma-eco-chimney-outsmart.jpg",
     href: "/products/chimneys",
-    className: "col-span-1 row-span-1",
+    className: "col-span-1 md:col-span-1 md:row-span-1",
   },
   {
-    title: "Water Dispensers",
+    title: "Water Dispensers & Softeners",
     category: "Accessories",
-    description: "Hydrate with Purified water Dispenser.",
+    description: "Hydrate with hot, cold, and normal water plus hard-water softeners.",
     image: "/images/products/dispensers/ashma-water-dispenser.jpg",
     href: "/products/dispensers",
-    className: "col-span-1 md:col-span-2 row-span-1",
+    className: "col-span-1 md:col-span-2 md:row-span-1",
   },
 ];
 
 export default function ProductEcosystem() {
   return (
-    <section className="py-24 bg-white dark:bg-black">
+    <section className="py-24 lg:py-32 bg-[#FFFFFF] text-[#1D1510] border-b border-[#DBD7D4]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <h2 className="text-sm font-semibold text-ashma-blue tracking-widest uppercase mb-4">Our Ecosystem</h2>
-            <h3 className="text-4xl md:text-5xl font-heading font-bold text-ashma-text dark:text-white leading-tight">
+            <span className="text-xs uppercase font-bold tracking-[0.25em] text-[#FF6300] block mb-4">
+              Our Ecosystem
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#1D1510] tracking-tight leading-tight">
               Premium Solutions for Every Need.
-            </h3>
+            </h2>
           </div>
           <Link
             href="/products"
-            className="flex items-center gap-2 text-ashma-blue font-semibold hover:text-ashma-dark transition-colors group"
+            className="inline-flex items-center gap-2 rounded-full bg-[#1D1510] hover:bg-[#FF6300] text-white text-xs uppercase font-bold tracking-wider px-7 py-3.5 transition-colors duration-300 shadow-md"
           >
-            View All Products
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span>View All Products</span>
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[250px]">
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {PRODUCTS.map((product, index) => (
             <motion.div
               key={index}
@@ -68,38 +75,61 @@ export default function ProductEcosystem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={cn("group relative rounded-3xl overflow-hidden", product.className)}
+              className={cn(
+                "group relative rounded-2xl overflow-hidden border border-[#DBD7D4] bg-[#F5F0ED] hover:border-[#FF6300] transition-all duration-300 flex flex-col justify-between p-6 sm:p-8 shadow-sm hover:shadow-lg",
+                product.className
+              )}
             >
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-contain bg-no-repeat bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url(${product.image})` }}
-              />
-              
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300" />
-              
-              {/* Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
-                <span className="text-xs font-bold uppercase tracking-wider text-ashma-light mb-2 opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+              {/* Product Info Header */}
+              <div className="z-10 mb-4">
+                <span className={cn(
+                  "text-[11px] font-bold uppercase tracking-[0.18em] mb-2 inline-block px-3 py-1 rounded-full border shadow-2xs",
+                  product.category === "Residential" && "bg-[#F0F7FF] text-[#008CE2] border-[#BAE6FD]",
+                  product.category === "Commercial" && "bg-[#F0F4FF] text-[#242E7F] border-[#C7D7FE]",
+                  product.category === "Home Appliances" && "bg-[#FFF0E6] text-[#FF6300] border-[#FFD8BF]",
+                  product.category === "Accessories" && "bg-[#F0FDF4] text-[#16A34A] border-[#BBF7D0]"
+                )}>
                   {product.category}
                 </span>
-                <h4 className="text-2xl font-heading font-bold mb-2">
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#1D1510] mb-2 group-hover:text-[#008CE2] transition-colors">
                   {product.title}
-                </h4>
-                <p className="text-sm text-gray-300 mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                </h3>
+                <p className="text-sm text-[#716B67] max-w-md leading-relaxed">
                   {product.description}
                 </p>
+              </div>
+
+              {/* Product Image Showcase (Clean, Bright, Fully Visible) */}
+              <div className={cn(
+                "relative w-full rounded-xl overflow-hidden bg-[#FFFFFF] border border-[#DBD7D4] p-4 flex items-center justify-center my-4 group-hover:scale-[1.02] transition-transform duration-500",
+                product.featured ? "aspect-[16/10] md:aspect-[4/3] min-h-[220px]" : "aspect-[16/9] min-h-[160px]"
+              )}>
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                />
+              </div>
+
+              {/* Bottom Action */}
+              <div className="z-10 pt-4 border-t border-[#DBD7D4]/60 flex items-center justify-between">
                 <Link 
                   href={product.href}
-                  className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-ashma-blue hover:border-ashma-blue transition-colors opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 duration-300 delay-100"
+                  className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-wider text-[#FF6300] hover:text-[#E05500] transition-colors"
                 >
-                  <ArrowRight className="w-5 h-5" />
+                  <span>Explore Lineup</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                 </Link>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#716B67]">
+                  Certified
+                </span>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

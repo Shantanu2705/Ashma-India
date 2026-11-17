@@ -1,163 +1,195 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Environment, OrbitControls, PresentationControls, MeshTransmissionMaterial, RoundedBox, Cylinder, Sphere } from "@react-three/drei";
-import * as THREE from "three";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { ShieldCheck, Cpu, Droplet, Sparkles, Sliders, CheckCircle2 } from "lucide-react";
 
-export function RealisticROPurifier() {
-  const groupRef = useRef<THREE.Group>(null);
-  const bubblesRef = useRef<THREE.Group>(null);
-
-  useFrame((state, delta) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.1;
-    }
-    if (bubblesRef.current) {
-      bubblesRef.current.rotation.y += delta * 0.5;
-      bubblesRef.current.children.forEach((bubble, i) => {
-        bubble.position.y += Math.sin(state.clock.elapsedTime * 2 + i) * 0.005;
-      });
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-      <group ref={groupRef} scale={1.1} position={[0, -1.3, 0]}>
-        
-        {/* Main Body - Glossy White Plastic */}
-        <RoundedBox args={[2.2, 3, 1.5]} radius={0.1} smoothness={2} position={[0, 1.5, 0]}>
-          <meshStandardMaterial color="#ffffff" roughness={0.2} metalness={0.1} />
-        </RoundedBox>
-
-        {/* Front Glass Panel - Black Acrylic */}
-        <RoundedBox args={[2, 2.8, 0.1]} radius={0.05} smoothness={2} position={[0, 1.5, 0.76]}>
-          <meshStandardMaterial color="#050505" roughness={0.1} metalness={0.6} />
-        </RoundedBox>
-
-        {/* LED Screen Area */}
-        <RoundedBox args={[1.2, 0.6, 0.05]} radius={0.05} smoothness={2} position={[0, 2.2, 0.8]}>
-          <meshStandardMaterial color="#000000" roughness={0.2} />
-        </RoundedBox>
-
-        {/* Glowing Indicators */}
-        <Sphere args={[0.05, 16, 16]} position={[-0.4, 2.2, 0.83]}>
-          <meshStandardMaterial color="#00ffcc" emissive="#00ffcc" emissiveIntensity={2} toneMapped={false} />
-        </Sphere>
-        <Sphere args={[0.05, 16, 16]} position={[-0.2, 2.2, 0.83]}>
-          <meshStandardMaterial color="#00a3ff" emissive="#00a3ff" emissiveIntensity={2} toneMapped={false} />
-        </Sphere>
-
-        {/* Transparent Water Storage Tank (Bottom Half) */}
-        <RoundedBox args={[2.0, 1.2, 1.2]} radius={0.1} smoothness={2} position={[0, 0.6, 0.1]}>
-          <meshStandardMaterial color="#dcf0ff" transparent opacity={0.3} roughness={0.1} metalness={0.1} />
-        </RoundedBox>
-
-        {/* Internal Filters (Visible through glass) */}
-        <Cylinder args={[0.2, 0.2, 1, 32]} position={[-0.5, 0.6, 0.1]}>
-          <meshStandardMaterial color="#ffffff" roughness={0.4} metalness={0.2} />
-        </Cylinder>
-        <Cylinder args={[0.2, 0.2, 1, 32]} position={[0.5, 0.6, 0.1]}>
-          <meshStandardMaterial color="#ffffff" roughness={0.4} metalness={0.2} />
-        </Cylinder>
-
-        {/* Animated Water Bubbles inside the tank */}
-        <group ref={bubblesRef} position={[0, 0.6, 0.1]}>
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Sphere 
-              key={i} 
-              args={[Math.random() * 0.03 + 0.01, 8, 8]} 
-              position={[(Math.random() - 0.5) * 1.5, (Math.random() - 0.5) * 0.8, (Math.random() - 0.5) * 0.8]}
-            >
-              <meshStandardMaterial color="#ffffff" transparent opacity={0.5} roughness={0.2} />
-            </Sphere>
-          ))}
-        </group>
-
-        {/* Metallic Dispenser Tap Base */}
-        <Cylinder args={[0.12, 0.15, 0.3, 32]} position={[0, 0.3, 0.9]} rotation={[Math.PI / 2, 0, 0]}>
-          <meshStandardMaterial color="#e0e0e0" metalness={1} roughness={0.1} envMapIntensity={2} />
-        </Cylinder>
-
-        {/* Dispenser Spout */}
-        <Cylinder args={[0.06, 0.06, 0.4, 32]} position={[0, 0.1, 1.0]} rotation={[0, 0, 0]}>
-          <meshStandardMaterial color="#e0e0e0" metalness={1} roughness={0.1} envMapIntensity={2} />
-        </Cylinder>
-
-        {/* Dispenser Lever */}
-        <RoundedBox args={[0.4, 0.08, 0.15]} radius={0.02} smoothness={2} position={[0, 0.4, 1.0]}>
-          <meshStandardMaterial color="#00a3ff" roughness={0.2} metalness={0.5} />
-        </RoundedBox>
-
-      </group>
-    </Float>
-  );
-}
+const ANATOMY_POINTS = [
+  {
+    id: "membrane",
+    title: "Multi-Stage RO Membrane",
+    icon: Droplet,
+    badge: "0.0001 Micron",
+    badgeColor: "bg-[#F0F7FF] text-[#008CE2] border-[#BAE6FD]",
+    pinColor: "bg-[#008CE2]",
+    desc: "Removes dissolved solids, heavy metals, arsenic, pesticides, and bacterial contaminants with 99.9% filtration efficiency.",
+    x: "50%",
+    y: "14%",
+  },
+  {
+    id: "alkaline",
+    title: "Copper & Alkaline Mineral Infusion",
+    icon: Sparkles,
+    badge: "Active Health",
+    badgeColor: "bg-[#FFF0E6] text-[#FF6300] border-[#FF6300]/20",
+    pinColor: "bg-[#FF6300]",
+    desc: "Recharges purified water with vital copper ions and natural alkaline minerals to balance body pH (8.0 - 8.5).",
+    x: "50%",
+    y: "25%",
+  },
+  {
+    id: "uv",
+    title: "Stainless Steel UV Chamber",
+    icon: Cpu,
+    badge: "11W Germicidal",
+    badgeColor: "bg-[#F0F4FF] text-[#242E7F] border-[#C7D7FE]",
+    pinColor: "bg-[#242E7F]",
+    desc: "Destroys residual bacteria, viruses, and microbial pathogens with intense germicidal ultraviolet radiation.",
+    x: "50%",
+    y: "35%",
+  },
+  {
+    id: "pump",
+    title: "Ashma 100 GPD Booster Pump",
+    icon: Sliders,
+    badge: "High Pressure",
+    badgeColor: "bg-[#F0F9FF] text-[#0284C7] border-[#BAE6FD]",
+    pinColor: "bg-[#0284C7]",
+    desc: "Engineered heavy-duty booster pump delivering consistent water pressure even in low-pressure Indian domestic pipelines.",
+    x: "64%",
+    y: "46%",
+  },
+  {
+    id: "tank",
+    title: "12L Food-Grade Storage Tank",
+    icon: ShieldCheck,
+    badge: "Airtight Seal",
+    badgeColor: "bg-[#F0FDF4] text-[#16A34A] border-[#BBF7D0]",
+    pinColor: "bg-[#008CE2]",
+    desc: "UV-protected, food-grade antibacterial storage ensuring pure water stays 100% fresh with continuous water level display.",
+    x: "50%",
+    y: "74%",
+  },
+];
 
 export default function Service3DModel() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [activePoint, setActivePoint] = useState(ANATOMY_POINTS[0]);
 
   return (
-    <section className="relative w-full py-24 bg-[#050505] overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-ashma-blue/10 via-transparent to-transparent opacity-50" />
+    <section className="py-24 lg:py-32 relative bg-[#FFFFFF] text-[#1D1510] border-b border-[#DBD7D4] overflow-hidden">
+      {/* Subtle Pure Water Blue Ambient Flare */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-[#008CE2]/8 blur-[180px] rounded-full pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs uppercase font-bold tracking-[0.25em] text-[#008CE2] block mb-4">
+            Next-Gen Engineering
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#1D1510] tracking-tight mb-6 leading-tight">
+            Anatomy of Pure Water
+          </h2>
+          <p className="text-[#716B67] text-base md:text-lg leading-relaxed">
+            Click on any highlighted component to inspect the advanced multi-stage purification architecture engineered inside every Ashma purifier.
+          </p>
+        </div>
+
+        {/* Interactive Anatomy Showcase Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <div className="space-y-6 order-2 lg:order-1">
-            <div className="inline-block px-4 py-1.5 rounded-full bg-ashma-blue/10 border border-ashma-blue/20 text-ashma-blue text-sm font-semibold mb-2">
-              Interactive 3D Experience
+          {/* Left Column: Visual Product Diagram with Hotspot Pins */}
+          <div className="lg:col-span-7 flex justify-center">
+            <div className="relative w-full max-w-[480px] aspect-[3/4] rounded-3xl bg-[#F5F0ED] border-2 border-[#DBD7D4] shadow-md overflow-hidden flex items-center justify-center">
+              
+              {/* Product Photo: Anchored with absolute inset to guarantee non-zero height */}
+              <div className="absolute inset-4 sm:inset-6 flex items-center justify-center">
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/products/ro-purifiers/ashma-anatomy-ally.jpg"
+                    alt="Ashma ALLY RO Purifier Transparent Internal Anatomy"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 480px"
+                    priority
+                    unoptimized
+                  />
+                </div>
+              </div>
+
+              {/* Interactive Hotspot Pins */}
+              {ANATOMY_POINTS.map((point) => {
+                const isSelected = activePoint.id === point.id;
+                return (
+                  <button
+                    key={point.id}
+                    onClick={() => setActivePoint(point)}
+                    style={{ left: point.x, top: point.y }}
+                    className={`absolute -translate-x-1/2 -translate-y-1/2 z-20 group flex items-center justify-center cursor-pointer transition-all duration-300 ${
+                      isSelected ? "scale-125" : "hover:scale-115"
+                    }`}
+                    aria-label={point.title}
+                  >
+                    <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all shadow-lg ${
+                      isSelected
+                        ? "bg-[#008CE2] text-white ring-4 ring-[#008CE2]/40 scale-110"
+                        : "bg-[#FFFFFF] text-[#1D1510] border-2 border-[#008CE2]/50 group-hover:bg-[#008CE2] group-hover:text-white"
+                    }`}>
+                      +
+                    </span>
+                  </button>
+                );
+              })}
+
+              {/* Instruction Pill */}
+              <div className="absolute bottom-4 left-4 right-4 sm:right-auto bg-[#FFFFFF]/95 backdrop-blur-md border border-[#DBD7D4] text-[#1D1510] text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-full shadow-sm flex items-center justify-center sm:justify-start gap-2 z-20">
+                <span className="w-2 h-2 rounded-full bg-[#008CE2] animate-pulse" />
+                Tap Points To Inspect Components
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white">
-              Next-Gen <span className="text-ashma-blue">RO Purifier</span>
-            </h2>
-            <p className="text-gray-400 text-lg leading-relaxed">
-              Explore the anatomy of our premium water purifiers in ultra-realistic 3D. 
-              Featuring advanced transparent tanks, multi-stage filtration cylinders, animated water dynamics, and 
-              a sleek modern design that fits perfectly in any contemporary kitchen.
-            </p>
-            <ul className="space-y-4 mt-8">
-              {[
-                "Modern Transparent Water Tank",
-                "Visible Multi-stage Filtration",
-                "Sleek LED Indicator Displays",
-                "Premium Metallic Dispenser"
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-center gap-4 text-gray-300">
-                  <div className="w-2 h-2 rounded-full bg-ashma-blue shrink-0 shadow-[0_0_10px_rgba(0,163,255,0.8)]" />
-                  <span className="font-medium text-gray-200">{item}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
-          <div className="h-[500px] w-full rounded-3xl overflow-hidden border border-white/5 bg-white/[0.02] order-1 lg:order-2 shadow-2xl relative cursor-grab active:cursor-grabbing">
-            <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/50 backdrop-blur-md rounded-full text-xs text-gray-400 border border-white/10 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Drag to Rotate
-            </div>
-            {mounted && (
-              <Canvas camera={{ position: [0, 0, 10], fov: 40 }}>
-                <ambientLight intensity={0.5} />
-                <spotLight position={[10, 10, 10]} angle={0.2} penumbra={1} intensity={2} castShadow />
-                <directionalLight position={[-5, 5, 5]} intensity={1} />
-                <OrbitControls 
-                  enableZoom={false} 
-                  enablePan={false} 
-                  minPolarAngle={Math.PI / 3} 
-                  maxPolarAngle={Math.PI / 1.5} 
-                />
-                <RealisticROPurifier />
-                <Environment preset="studio" />
-              </Canvas>
-            )}
+          {/* Right Column: Detailed Technical Specification Drawer */}
+          <div className="lg:col-span-5 space-y-4">
+            {ANATOMY_POINTS.map((point) => {
+              const isSelected = activePoint.id === point.id;
+              return (
+                <div
+                  key={point.id}
+                  onClick={() => setActivePoint(point)}
+                  className={`p-5 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                    isSelected
+                      ? "bg-[#FFFFFF] border-[#008CE2] shadow-md ring-1 ring-[#008CE2]/30"
+                      : "bg-[#F5F0ED] border-[#DBD7D4] hover:bg-[#FFFFFF] hover:border-[#DBD7D4]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                        isSelected ? "bg-[#008CE2] text-white shadow-sm" : "bg-white text-[#008CE2] border border-[#DBD7D4]"
+                      }`}>
+                        <point.icon className="w-4 h-4" />
+                      </div>
+                      <h3 className="text-base font-bold uppercase tracking-wider text-[#1D1510]">
+                        {point.title}
+                      </h3>
+                    </div>
+                    <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border shrink-0 ${point.badgeColor}`}>
+                      {point.badge}
+                    </span>
+                  </div>
+
+                  <AnimatePresence>
+                    {isSelected && (
+                      <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-xs text-[#716B67] leading-relaxed mt-3 pl-12"
+                      >
+                        {point.desc}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
 
         </div>
+
       </div>
     </section>
   );

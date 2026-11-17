@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 70" fill="none">
+  <!-- Livpure leaf/drop -->
+  <path d="M26 14 C16 22 14 36 20 46 C26 56 40 58 48 48 C48 32 38 18 26 14 Z" fill="#69BE28"/>
+  <path d="M28 20 C22 26 21 37 26 44" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  <!-- Livpure text -->
+  <text x="56" y="44" font-family="'Century Gothic', Arial, sans-serif" font-weight="800" font-size="32" fill="#003366" letter-spacing="-0.5">Livpure</text>
+  <text x="58" y="58" font-family="Arial, sans-serif" font-weight="600" font-size="9" fill="#69BE28" letter-spacing="2">TOUCH TO PURITY</text>
+</svg>
+

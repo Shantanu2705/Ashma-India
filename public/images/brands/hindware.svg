@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" fill="none">
+  <!-- Hindware emblem / stylized H -->
+  <rect x="10" y="18" width="34" height="34" rx="8" fill="#E31837"/>
+  <path d="M20 25 V45 M34 25 V45 M20 35 H34" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <!-- Hindware wordmark -->
+  <text x="54" y="44" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="30" fill="#E31837" letter-spacing="-1">hindware</text>
+  <text x="56" y="58" font-family="Arial, sans-serif" font-weight="600" font-size="9" fill="#716B67" letter-spacing="1.5">SMART APPLIANCES</text>
+</svg>
+

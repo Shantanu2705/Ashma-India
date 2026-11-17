@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" fill="none">
+  <!-- Havells Red Diamond H -->
+  <polygon points="12,35 28,14 44,35 28,56" fill="#ED1C24"/>
+  <path d="M22 26 V44 M34 26 V44 M22 35 H34" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- HAVELLS text -->
+  <text x="52" y="44" font-family="'Arial Black', Arial, sans-serif" font-weight="900" font-size="28" fill="#ED1C24" letter-spacing="1">HAVELLS</text>
+  <text x="54" y="58" font-family="Arial, sans-serif" font-weight="700" font-size="9" fill="#1D1510" letter-spacing="2">APPLIANCES</text>
+</svg>
+

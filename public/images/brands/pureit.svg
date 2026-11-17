@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 70" fill="none">
+  <!-- Water loop -->
+  <path d="M26 18 C36 18 42 26 42 35 C42 45 34 52 24 52 C14 52 10 44 10 35 C10 24 22 18 26 18 Z" stroke="#0077C8" stroke-width="5" fill="none"/>
+  <circle cx="26" cy="35" r="4" fill="#00A3E0"/>
+  <!-- Pureit text -->
+  <text x="50" y="44" font-family="'Trebuchet MS', Arial, sans-serif" font-weight="900" font-size="30" fill="#005A9C">pureit</text>
+  <text x="52" y="58" font-family="Arial, sans-serif" font-weight="600" font-size="8" fill="#716B67" letter-spacing="1">BY UNILEVER</text>
+</svg>
+
