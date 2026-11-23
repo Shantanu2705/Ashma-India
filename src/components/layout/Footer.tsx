@@ -151,6 +151,21 @@ export default function Footer() {
             <Link href="/terms" className="text-[#716B67] hover:text-[#FF6300] transition-colors">Terms of Service</Link>
           </div>
         </div>
+
+        {/* Blinkable Attribution */}
+        <div className="mt-8 pt-6 border-t border-[#DBD7D4]/40 flex justify-center items-center">
+          <a
+            href="https://www.digitaldictionarysiliguri.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#FFFFFF] hover:bg-[#FFF0E6] border border-[#DBD7D4] hover:border-[#FF6300] transition-all duration-300 shadow-xs"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#FF6300] animate-ping" />
+            <span className="text-xs font-bold uppercase tracking-[0.16em] text-[#FF6300] group-hover:text-[#E05500] animate-blink">
+              Designed by Digital Dictionary
+            </span>
+          </a>
+        </div>
       </div>
     </footer>
   );
