@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return CATEGORIES.map((category) => ({
     category: category.slug,

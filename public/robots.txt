@@ -1,0 +1,12 @@
+# User-agent configuration
+User-agent: *
+Allow: /
+Allow: /products$
+Allow: /products/ro-purifiers$
+Allow: /products/commercial-ro$
+Allow: /products/chimneys$
+Allow: /products/dispensers$
+Disallow: /*?*
+Disallow: /api/
+
+Sitemap: https://ashmaindia.com/sitemap.xml

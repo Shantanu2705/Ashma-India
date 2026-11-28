@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2, ShieldCheck, PhoneCall } from "lucide-react";
 import ProductGallery from "@/components/products/ProductGallery";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return CATEGORIES.flatMap((category) => 
     category.products.map((product) => ({
